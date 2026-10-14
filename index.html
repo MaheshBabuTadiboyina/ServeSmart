@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12643c">
+  <title>ServeSmart | Surplus food, shared hope</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="ServeSmart home" data-page-link="Overview">
+        <span class="brand-mark" aria-hidden="true">🍃</span>
+        <span class="brand-copy">
+          <span class="brand-name">ServeSmart</span>
+          <span class="brand-tagline">Surplus food. Shared hope.</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <span class="demo-badge">DEMO PROJECT</span>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">☼</button>
+      </div>
+    </header>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-page="Overview" type="button">Overview</button>
+      <button class="nav-link" data-page="Donate Food" type="button">Donate Food</button>
+      <button class="nav-link" data-page="Find Matches" type="button">Find Matches</button>
+      <button class="nav-link" data-page="Manage Donations" type="button">Manage Donations</button>
+      <button class="nav-link" data-page="Impact Report" type="button">Impact Report</button>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">FOOD REDISTRIBUTION, MADE SIMPLE</span>
+          <h1>Good food deserves<br class="desktop-break"> a second chance.</h1>
+          <p>Help surplus food find its way to community organisations. Reduce waste, support local communities, and make every portion count.</p>
+          <button class="hero-button" type="button" data-go="Donate Food">＋ List surplus food</button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+          <div class="food-illustration">🥗</div>
+          <span class="float-chip chip-one">♻️ Less waste</span>
+          <span class="float-chip chip-two">♡ More meals</span>
+        </div>
+      </section>
+
+      <div class="notice"><span class="notice-icon">ⓘ</span><p><strong>Prototype notice:</strong> recipient organisations, distances, matching scores and impact figures are simulated. No real pickups are arranged. Food safety and pickup details must be verified by a responsible person.</p></div>
+
+      <section id="page-Overview" class="page-section active">
+        <div class="section-title-row">
+          <div><p class="eyebrow green">YOUR WORKSPACE</p><h2>Your dashboard</h2><p class="muted">A quick look at donations in this browser.</p></div>
+          <button class="button button-primary" data-go="Donate Food" type="button">＋ New donation</button>
+        </div>
+        <div class="metrics-grid" id="overviewMetrics"></div>
+        <div class="two-column">
+          <article class="panel">
+            <div class="panel-heading"><div><h3>Recent donations</h3><p class="muted">Your latest food listings</p></div><button class="text-button" data-go="Manage Donations" type="button">View all →</button></div>
+            <div id="recentDonations"></div>
+          </article>
+          <article class="panel how-panel">
+            <h3>How ServeSmart works</h3>
+            <div class="step"><span class="step-icon">🍱</span><div><strong>1. List surplus food</strong><p class="muted">Add portions, preparation time and pickup details.</p></div></div>
+            <div class="step"><span class="step-icon">🤝</span><div><strong>2. Find a match</strong><p class="muted">Compare food type, capacity and pickup windows.</p></div></div>
+            <div class="step"><span class="step-icon">📊</span><div><strong>3. Track the outcome</strong><p class="muted">Manage listings and review demo impact.</p></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="page-Donate Food" class="page-section">
+        <div class="page-intro"><p class="eyebrow green">MAKE A DIFFERENCE</p><h2>Register a food donation</h2><p class="muted">Share clear, accurate details so a suitable recipient can be identified.</p></div>
+        <form id="donationForm" class="panel form-panel">
+          <div class="form-section-heading"><span class="form-step">01</span><div><h3>Donation details</h3><p class="muted">Tell us what food is available.</p></div></div>
+          <div class="form-grid">
+            <label>Donor or organisation name <span class="required">*</span><input name="donor" required maxlength="100" placeholder="e.g. Campus Cafeteria"></label>
+            <label>Food description <span class="required">*</span><input name="description" required maxlength="140" placeholder="e.g. Fresh vegetable rice"></label>
+            <label>Food category<select name="foodType"><option>Vegetarian</option><option>Vegan</option><option>Non-vegetarian</option></select></label>
+            <label>Number of portions<input name="portions" type="number" min="1" max="10000" value="20" required></label>
+            <label>Preparation date<input name="preparedDate" type="date" required></label>
+            <label>Preparation time<input name="preparedTime" type="time" required></label>
+            <label>Latest pickup time<input name="pickupDeadline" type="time" value="18:00" required></label>
+            <label>Current storage<select name="storage"><option>Hot / temperature controlled</option><option>Refrigerated</option><option>Room temperature</option><option>Frozen</option><option>Other / needs verification</option></select></label>
+          </div>
+          <div class="safety-box">
+            <label class="checkbox-label"><input name="safetyConfirmed" type="checkbox" required><span><strong>Food safety confirmation</strong><small>I confirm that food handling, storage and preparation details have been checked by a responsible person.</small></span></label>
+          </div>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+          <div class="form-actions"><button class="button button-primary" type="submit">Add donation →</button><button class="button button-quiet" type="reset">Clear form</button></div>
+        </form>
+      </section>
+
+      <section id="page-Find Matches" class="page-section">
+        <div class="page-intro"><p class="eyebrow green">SMARTER REDISTRIBUTION</p><h2>Find suitable recipients</h2><p class="muted">Explore possible matches using transparent, rule-based demo scoring.</p></div>
+        <div class="panel">
+          <label class="select-label" for="matchDonation">Select an available donation</label>
+          <select id="matchDonation" class="wide-select"></select>
+          <div id="matchDetails" class="match-details"></div>
+          <div id="matchResults" class="match-results"></div>
+        </div>
+      </section>
+
+      <section id="page-Manage Donations" class="page-section">
+        <div class="page-intro"><p class="eyebrow green">KEEP THINGS ORGANISED</p><h2>Manage donations</h2><p class="muted">Review listings and update their status in this demo.</p></div>
+        <div class="filter-row"><label for="statusFilter">Filter by status</label><select id="statusFilter"><option>All</option><option>Available</option><option>Reserved</option><option>Collected</option><option>Cancelled</option></select><span id="listingCount" class="muted"></span></div>
+        <div id="manageList" class="stack-list"></div>
+      </section>
+
+      <section id="page-Impact Report" class="page-section">
+        <div class="page-intro"><p class="eyebrow green">SMALL ACTIONS, BIGGER IMPACT</p><h2>Impact report</h2><p class="muted">Calculated from the records stored in this browser. These are not verified real-world outcomes.</p></div>
+        <div id="impactMetrics" class="metrics-grid"></div>
+        <div class="two-column impact-columns">
+          <article class="panel"><h3>Donation status breakdown</h3><p class="muted">Listings by current status</p><div id="statusChart" class="bar-chart"></div></article>
+          <article class="panel"><h3>Portions by food category</h3><p class="muted">Estimated portions listed</p><div id="categoryChart" class="bar-chart"></div></article>
+        </div>
+        <div class="panel export-panel"><div><h3>Export records</h3><p class="muted">Download your current demo listings as a CSV file.</p></div><button id="exportCsv" class="button button-primary" type="button">↓ Download CSV</button></div>
+        <div id="impactTable"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="footer-brand"><span class="brand-mark small">🍃</span><strong>ServeSmart</strong></div><p>Surplus food, shared hope.</p><p class="muted">Student prototype for food redistribution and sustainability · Demo data only</p></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
